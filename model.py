@@ -35,6 +35,7 @@ def _get_x_offset(x: Tensor, q: Tensor, patch_size: int) -> Tensor:
     # (b, h, w, N)
     # index_x*w + index_y
     index = torch.add(q[..., :patch_size] * padded_w, q[..., patch_size:])
+    index = index.to(device=x.device)
 
     # (b, c, h*w*N)
     index = index.contiguous().unsqueeze(dim=1)

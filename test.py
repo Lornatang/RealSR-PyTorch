@@ -32,8 +32,10 @@ model_names = sorted(
 def main() -> None:
     # Initialize the super-resolution sr_model
     sr_model = model.__dict__[config.model_arch_name](in_channels=config.in_channels,
-                                                      out_channels=config.out_channels,
-                                                      channels=config.channels)
+                                                      channels=config.channels,
+                                                      reduction=config.reduction,
+                                                      num_rg=config.num_rg,
+                                                      num_rcab=config.num_rcab)
     sr_model = sr_model.to(device=config.device)
     print(f"Build `{config.model_arch_name}` model successfully.")
 

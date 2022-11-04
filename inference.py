@@ -39,8 +39,10 @@ def choice_device(device_type: str) -> torch.device:
 def build_model(model_arch_name: str, device: torch.device) -> nn.Module:
     # Initialize the super-resolution model
     sr_model = model.__dict__[model_arch_name](in_channels=3,
-                                               out_channels=3,
-                                               channels=64)
+                                               channels=64,
+                                               reduction=16,
+                                               num_rg=10,
+                                               num_rcab=20)
     sr_model = sr_model.to(device=device)
 
     return sr_model
@@ -78,14 +80,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Using the model generator super-resolution images.")
     parser.add_argument("--model_arch_name",
                         type=str,
-                        default="rdn_small_x4")
+                        default="realsr_rcan_x4")
     parser.add_argument("--inputs_path",
                         type=str,
-                        default="./figure/119082_lr.png",
+                        default="./figure/Nikon_001.png",
                         help="Low-resolution image path.")
     parser.add_argument("--output_path",
                         type=str,
-                        default="./figure/119082_sr.png",
+                        default="./figure/SR_Nikon_001.png",
                         help="Super-resolution image path.")
     parser.add_argument("--upscale_factor",
                         type=int,

@@ -85,8 +85,8 @@ if mode == "train":
 
 if mode == "test":
     # Test data address
-    lr_dir = f"./data/Set5/LRbicx{upscale_factor}"
+    lr_dir = f"./data/RealSR_V3/test/x{upscale_factor}/LR"
     sr_dir = f"./results/test/{exp_name}"
-    gt_dir = f"./data/Set5/GTmod12"
+    gt_dir = f"./data/RealSR_V3/test/x{upscale_factor}/HR"
 
-    model_weights_path = "./results/pretrained_models/RDN_small_x4-DIV2K-543022e7.pth.tar"
+    model_weights_path = "./results/pretrained_models/RealSR_RCAN_x4-RealSR_V3-e52b03e4.pth.tar"

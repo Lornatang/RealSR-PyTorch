@@ -40,7 +40,7 @@ upscale_factor = 4
 # Current configuration parameter method
 mode = "train"
 # Experiment name, easy to save weights and log files
-exp_name = "RealSR_RCAN_x4-DIV2K"
+exp_name = "RealSR_RCAN_x4-RealSR_V3"
 
 if mode == "train":
     # Dataset address

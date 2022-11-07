@@ -1,25 +1,26 @@
-# RDN-PyTorch
+# RealSR-PyTorch
 
 ## Overview
 
 This repository contains an op-for-op PyTorch reimplementation
-of [Residual Dense Network for Image Super-Resolution](https://arxiv.org/abs/1802.08797v2).
+of [Toward Real-World Single Image Super-Resolution: A New Benchmark and A New Model](https://openaccess.thecvf.com/content_ICCV_2019/papers/Cai_Toward_Real-World_Single_Image_Super-Resolution_A_New_Benchmark_and_a_ICCV_2019_paper.pdf)
+.
 
 ## Table of contents
 
-- [RDN-PyTorch](#rdn-pytorch)
+- [RealSR-PyTorch](#realsr-pytorch)
     - [Overview](#overview)
     - [Table of contents](#table-of-contents)
     - [Download weights](#download-weights)
     - [Download datasets](#download-datasets)
     - [How Test and Train](#how-test-and-train)
         - [Test](#test)
-        - [Train RDN model](#train-rdn-model)
-        - [Resume train RDN model](#resume-train-rdn-model)
+        - [Train RealSR_RCAN model](#train-realsr_rcan-model)
+        - [Resume train RealSR_RCAN model](#resume-train-realsr_rcan-model)
     - [Result](#result)
     - [Contributing](#contributing)
     - [Credit](#credit)
-        - [Residual Dense Network for Image Super-Resolution](#residual-dense-network-for-image-super-resolution)
+        - [Toward Real-World Single Image Super-Resolution: A New Benchmark and A New Model](#toward-real-world-single-image-super-resolution-a-new-benchmark-and-a-new-model)
 
 ## Download weights
 
@@ -43,39 +44,38 @@ Both training and testing only need to modify the `config.py` file.
 
 modify the `config.py`
 
-- line 31: `model_arch_name` change to `rdn_small_x4`.
-- line 37: `upscale_factor` change to `4`.
-- line 39: `mode` change to `test`.
-- line 40: `exp_name` change to `test_RDN_small_x4-DIV2K`.
-- line 88: `model_weights_path` change to `./results/pretrained_models/RDN_small_x4-DIV2K-543022e7.pth.tar`.
--
+- line 31: `model_arch_name` change to `realsr_rcan_x4`.
+- line 39: `upscale_factor` change to `4`.
+- line 41: `mode` change to `test`.
+- line 43: `exp_name` change to `RealSR_RCAN_x4-RealSR_V3`.
+- line 92: `model_weights_path` change to `./results/pretrained_models/RealSR_RCAN_x4-RealSR_V3-e52b03e4.pth.tar`.
 
 ```bash
 python3 test.py
 ```
 
-### Train RDN model
+### Train RealSR_RCAN model
 
 modify the `config.py`
 
-- line 31: `model_arch_name` change to `rdn_small_x4`.
-- line 37: `upscale_factor` change to `4`.
-- line 39: `mode` change to `train`.
-- line 40: `exp_name` change to `RDN_small_x4-DIV2K`.
+- line 31: `model_arch_name` change to `realsr_rcan_x4`.
+- line 39: `upscale_factor` change to `4`.
+- line 41: `mode` change to `train`.
+- line 43: `exp_name` change to `RealSR_RCAN_x4-RealSR_V3`.
 
 ```bash
 python3 train.py
 ```
 
-### Resume train RDN model
+### Resume train RealSR_RCAN model
 
 modify the `config.py`
 
-- line 31: `model_arch_name` change to `rdn_small_x4`.
-- line 37: `upscale_factor` change to `4`.
-- line 39: `mode` change to `train`.
-- line 40: `exp_name` change to `RDN_small_x4-DIV2K`.
-- line 57: `resume_model_weights_path` change to `./results/RDN_small_x4-DIV2K/epoch_xxx.pth.tar`.
+- line 31: `model_arch_name` change to `realsr_rcan_x4`.
+- line 39: `upscale_factor` change to `4`.
+- line 41: `mode` change to `test`.
+- line 43: `exp_name` change to `RealSR_RCAN_x4-RealSR_V3`.
+- line 57: `resume_model_weights_path` change to `./results/RealSR_RCAN_x4-RealSR_V3/epoch_xxx.pth.tar`.
 
 ```bash
 python3 train.py
@@ -83,18 +83,19 @@ python3 train.py
 
 ## Result
 
-Source of original paper results: [https://arxiv.org/abs/1802.08797v2](https://arxiv.org/abs/1802.08797v2)
+Source of original paper
+results: [https://openaccess.thecvf.com/content_ICCV_2019/papers/Cai_Toward_Real-World_Single_Image_Super-Resolution_A_New_Benchmark_and_a_ICCV_2019_paper.pdf](https://openaccess.thecvf.com/content_ICCV_2019/papers/Cai_Toward_Real-World_Single_Image_Super-Resolution_A_New_Benchmark_and_a_ICCV_2019_paper.pdf)
 
 In the following table, the psnr value in `()` indicates the result of the project, and `-` indicates no test.
 
-|  Method   | Scale |          Set5 (PSNR/SSIM)           |          Set14 (PSNR/SSIM)          | 
-|:---------:|:-----:|:-----------------------------------:|:-----------------------------------:|
-| RDN_small |   2   | 38.24(**38.11**)/0.9614(**0.9615**) | 34.01(**33.70**)/0.9212(**0.9185**) | 
-| RDN_small |   3   | 34.71(**33.99**)/0.9296(**0.9240**) | 30.57(**30.06**)/0.8468(**0.8384**) |
-| RDN_small |   4   | 32.47(**32.34**)/0.8990(**0.8977**) | 28.81(**28.71**)/0.7871(**0.7855**) | 
+|     Method     | Scale | RealSR_V3 (PSNR) | RealSR_V3 (SSIM) | 
+|:--------------:|:-----:|:----------------:|:----------------:|
+| RealSR_RCAN_x4 |   2   | 33.87(**34.15**) | 0.922(**0.913**) | 
+| RealSR_RCAN_x4 |   3   | 30.40(**31.28**) | 0.862(**0.858**) |
+| RealSR_RCAN_x4 |   4   | 28.88(**29.68**) | 0.826(**0.820**) | 
 
 ```bash
-# Download `RDN_small_x4-DIV2K-543022e7.pth.tar` weights to `./results/pretrained_models/RDN_small_x4-DIV2K-543022e7.pth.tar`
+# Download `RealSR_RCAN_x4-RealSR_V3-e52b03e4.pth.tar` weights to `./results/pretrained_models/RealSR_RCAN_x4-RealSR_V3-e52b03e4.pth.tar`
 # More detail see `README.md<Download weights>`
 python3 ./inference.py
 ```
@@ -108,8 +109,8 @@ Output:
 <span align="center"><img width="2948" height="1648" src="figure/SR_Nikon_001.png"/></span>
 
 ```text
-Build `rdn_small_x4` model successfully.
-Load `rdn_small_x4` model weights `./results/pretrained_models/RDN_small_x4-DIV2K-543022e7.pth.tar` successfully.
+Build `realsr_rcan_x4` model successfully.
+Load `realsr_rcan_x4` model weights `./results/pretrained_models/RealSR_RCAN_x4-RealSR_V3-e52b03e4.pth.tar` successfully.
 SR image save to `./figure/baboon_lr.png`
 ```
 
@@ -122,31 +123,32 @@ I look forward to seeing what the community does with these models!
 
 ## Credit
 
-### Residual Dense Network for Image Super-Resolution
+### Toward Real-World Single Image Super-Resolution: A New Benchmark and A New Model
 
-_Yulun Zhang, Yapeng Tian, Yu Kong, Bineng Zhong, Yun Fu_ <br>
+_Jianrui Cai, Hui Zeng, Hongwei Yong, Zisheng Cao, Lei Zhang_ <br>
 
 **Abstract** <br>
-A very deep convolutional neural network (CNN) has recently achieved great success for image super-resolution (SR) and
-offered hierarchical features as well. However, most deep CNN based SR models do not make full use of the hierarchical
-features from the original low-resolution (LR) images, thereby achieving relatively-low performance. In this paper, we
-propose a novel residual dense network (RDN) to address this problem in image SR. We fully exploit the hierarchical
-features from all the convolutional layers. Specifically, we propose residual dense block (RDB) to extract abundant
-local features via dense connected convolutional layers. RDB further allows direct connections from the state of
-preceding RDB to all the layers of current RDB, leading to a contiguous memory (CM) mechanism. Local feature fusion in
-RDB is then used to adaptively learn more effective features from preceding and current local features and stabilizes
-the training of wider network. After fully obtaining dense local features, we use global feature fusion to jointly and
-adaptively learn global hierarchical features in a holistic way. Extensive experiments on benchmark datasets with
-different degradation models show that our RDN achieves favorable performance against state-of-the-art methods.
+Most of the existing learning-based single image superresolution (SISR) methods are trained and evaluated on simulated
+datasets, where the low-resolution (LR) images are generated by applying a simple and uniform degradation (i.e., bicubic
+downsampling) to their high-resolution (HR) counterparts. However, the degradations in real-world LR images are far more
+complicated. As a consequence, the SISR models trained on simulated data become less effective when applied to practical
+scenarios. In this paper, we build a real-world super-resolution (RealSR) dataset where paired LR-HR images on the same
+scene are captured by adjusting the focal length of a digital camera. An image registration algorithm is developed to
+progressively align the image pairs at different resolutions. Considering that the degradation kernels are naturally
+non-uniform in our dataset, we present a Laplacian pyramid based kernel prediction network (LP-KPN), which efficiently
+learns per-pixel kernels to recover the HR image. Our extensive experiments demonstrate that SISR models trained on our
+RealSR dataset deliver better visual quality with sharper edges and finer textures on real-world scenes than those
+trained on simulated datasets. Though our RealSR dataset is built by using only two cameras (Canon 5D3 and Nikon D810),
+the trained model generalizes well to other camera devices such as Sony a7II and mobile phones.
 
-[[Paper]](https://arxiv.org/abs/1802.08797v2) [[Code]](https://github.com/jaewon-lee-b/rdn)
+[[Code]](https://github.com/jixiaozhong/RealSR) [[Paper]](https://openaccess.thecvf.com/content_ICCV_2019/papers/Cai_Toward_Real-World_Single_Image_Super-Resolution_A_New_Benchmark_and_a_ICCV_2019_paper.pdf) [[Code]](https://github.com/jaewon-lee-b/realsr)
 
 ```bibtex
-@inproceedings{zhang2018residual,
-  title={Residual dense network for image super-resolution},
-  author={Zhang, Yulun and Tian, Yapeng and Kong, Yu and Zhong, Bineng and Fu, Yun},
-  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
-  pages={2472--2481},
-  year={2018}
-}
+@InProceedings{Ji_2020_CVPR_Workshops,
+               author = {Ji, Xiaozhong and Cao, Yun and Tai, Ying and Wang, Chengjie and Li, Jilin and Huang, Feiyue},
+               title = {Real-World Super-Resolution via Kernel Estimation and Noise Injection},
+               booktitle = {The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+               month = {June},
+               year = {2020}
+     }
 ```

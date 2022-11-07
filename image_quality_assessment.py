@@ -947,7 +947,11 @@ def _cov_torch(tensor, rowvar=True, bias=False):
     """
     tensor = tensor if rowvar else tensor.transpose(-1, -2)
     tensor = tensor - tensor.mean(dim=-1, keepdim=True)
-    factor = 1 / (tensor.shape[-1] - int(not bool(bias)))
+    if tensor.shape[-1] - int(not bool(bias)) == 0:
+        factor = 1
+    else:
+        factor = 1 / (tensor.shape[-1] - int(not bool(bias)))
+
     return factor * tensor @ tensor.transpose(-1, -2)
 
 

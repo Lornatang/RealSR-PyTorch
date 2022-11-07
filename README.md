@@ -101,11 +101,11 @@ python3 ./inference.py
 
 Input:
 
-<span align="center"><img width="480" height="312" src="figure/119082_lr.png"/></span>
+<span align="center"><img width="2948" height="1648" src="figure/Nikon_001.png"/></span>
 
 Output:
 
-<span align="center"><img width="480" height="312" src="figure/119082_sr.png"/></span>
+<span align="center"><img width="2948" height="1648" src="figure/SR_Nikon_001.png"/></span>
 
 ```text
 Build `rdn_small_x4` model successfully.

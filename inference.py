@@ -95,7 +95,7 @@ if __name__ == "__main__":
                         help="Model upscale factor")
     parser.add_argument("--model_weights_path",
                         type=str,
-                        default="./results/pretrained_models/RDN_small_x4-DIV2K-543022e7.pth.tar",
+                        default="./results/pretrained_models/RealSR_RCAN_x4-RealSR_V3-e52b03e4.pth.tar",
                         help="Model weights file path.")
     parser.add_argument("--device_type",
                         type=str,
